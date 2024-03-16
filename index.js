@@ -54,7 +54,7 @@ const motivoRouter = require('./routers/motivoRouter');
 // Usa los enrutadores
 app.use('/estados', auth, roleAuth([1]), estadosRouter);
 app.use('/roles', auth, roleAuth([1]), rolesRouter);
-app.use('/usuarios', auth, roleAuth([1]), usuariosRouter);
+app.use('/usuarios',  usuariosRouter);
 app.use('/notificaciones', auth, notificacionesRouter);
 app.use('/usuario-notificaciones', auth, usuarioNotificacionesRouter);
 app.use('/login', login);
