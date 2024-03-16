@@ -6,17 +6,12 @@ const auth = require('./middleware/auth')
 const roleAuth = require('./middleware/roleAuth')
 const cors = require('cors')
 
-// const listaBlanca = ['http://localhost:4200', 'http://10.0.2.2:3000', 'http://localhost:3000'];
+const listaBlanca = ['https://main--simpsena.netlify.app/','http://localhost:4200', 'http://10.0.2.2:3000', 'http://localhost:3000'];
 
+app.use(cors({
+     origin: listaBlanca
+ }))
 
-// app.use(cors({
-//     origin: listaBlanca
-// }))
-
-// cosas que pasan en los mercheos 
-
-
-app.use(cors({}))
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
