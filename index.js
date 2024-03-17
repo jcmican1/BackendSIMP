@@ -53,22 +53,22 @@ const motivoRouter = require('./routers/motivoRouter');
 app.use('/estados',  estadosRouter);
 app.use('/roles', rolesRouter);
 app.use('/usuarios',  usuariosRouter);
-app.use('/notificaciones', auth, notificacionesRouter);
-app.use('/usuario-notificaciones', auth, usuarioNotificacionesRouter);
+app.use('/notificaciones',  notificacionesRouter);
+app.use('/usuario-notificaciones',  usuarioNotificacionesRouter);
 app.use('/login', login);
 
-app.use('/unidad-medida', auth, unidad_medidaRouter);
-app.use('/producto-materia', auth, plantilla_producto_has_producto_materia_prima);
-app.use('/plantilla-producto', auth, plantilla_producto);
-app.use('/categoria', auth, categoriaRouter);
-app.use('/materia-prima', auth, producto_materia_prima);
-app.use('/reportes', auth, Reportes);
+app.use('/unidad-medida',  unidad_medidaRouter);
+app.use('/producto-materia',  plantilla_producto_has_producto_materia_prima);
+app.use('/plantilla-producto',  plantilla_producto);
+app.use('/categoria',  categoriaRouter);
+app.use('/materia-prima',  producto_materia_prima);
+app.use('/reportes',  Reportes);
 
-app.use('/proveedor', auth, proveedorRouter);
-app.use('/ubicacion-almacen/', auth, ubicacionAlmacenRouter);
-app.use('/existencias', auth, existenciasRouter);
-app.use('/movimiento', auth, movimientoRouter);
-app.use('/motivo', auth, motivoRouter);
+app.use('/proveedor',  proveedorRouter);
+app.use('/ubicacion-almacen/',  ubicacionAlmacenRouter);
+app.use('/existencias',  existenciasRouter);
+app.use('/movimiento',  movimientoRouter);
+app.use('/motivo',  motivoRouter);
 
 //comienzo de rutas
 
