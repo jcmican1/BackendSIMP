@@ -5,6 +5,8 @@ const app = express()
 const auth = require('./middleware/auth')
 const roleAuth = require('./middleware/roleAuth')
 const cors = require('cors')
+const mysql = require('mysql2');
+
 
 // const listaBlanca = ['https://main--simpsena.netlify.app/','http://localhost:4200', 'http://10.0.2.2:3000', 'http://localhost:3000','https://main--simpsena.netlify.app'];
 
