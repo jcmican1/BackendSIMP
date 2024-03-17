@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
     hash.update(nuevoUsuario.Clave);
     let hashMD5 = hash.digest('hex');
     nuevoUsuario.Clave = hashMD5
-    let query = `SELECT * FROM usuario WHERE Correo = juan@example.com AND Clave = 123;`
+    let query = `SELECT * FROM Usuario WHERE Correo = juan@example.com AND Clave = 123;`
 
     console.log('====================================');
     console.log("con la consulta: ", query);
@@ -42,8 +42,17 @@ router.post('/', (req, res) => {
             let estadoidusuario = resultado[0]
             let estado = estadoidusuario.Estado_idEstado
             if (resultado.length > 0) {
+                console.log('====================================');
+                console.log("Dentro del if de verificacion de resultado y antes de la verificacion de estado", estado );
+                console.log('====================================');
                 if (estado == 1) {
+                    console.log('====================================');
+                    console.log("Dentro del if de verificacion de estado" );
+                    console.log('====================================');
                     let tokenSession = await tokenSign(resultado[0]);
+                    console.log('====================================');
+                    console.log("despues de la generacion del token: ", tokenSession );
+                    console.log('====================================');
                     console.log("Chido", resultado);
                     res.json(tokenSession)
                 } else {
