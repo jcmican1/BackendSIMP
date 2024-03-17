@@ -15,6 +15,7 @@ const mysql = require('mysql2');
 //  }))
 
 app.use(cors());
+
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', '*');
@@ -24,7 +25,8 @@ app.use(function (req, res, next) {
 
 app.use(bodyParser.json())
 
-const PUERTO = 3000
+const PUERTO = process.env.PORT;
+
 
 app.listen(PUERTO, () => {
     console.log(`Servidor corriendo en el puerto ${PUERTO} bien`);
@@ -54,8 +56,8 @@ const movimientoRouter = require('./routers/movimientoRouter');
 const motivoRouter = require('./routers/motivoRouter');
 
 // Usa los enrutadores
-app.use('/estados', auth, roleAuth([1]), estadosRouter);
-app.use('/roles', auth, roleAuth([1]), rolesRouter);
+app.use('/estados',  estadosRouter);
+app.use('/roles', rolesRouter);
 app.use('/usuarios',  usuariosRouter);
 app.use('/notificaciones', auth, notificacionesRouter);
 app.use('/usuario-notificaciones', auth, usuarioNotificacionesRouter);
