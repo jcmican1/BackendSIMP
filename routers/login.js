@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
     hash.update(nuevoUsuario.Clave);
     let hashMD5 = hash.digest('hex');
     nuevoUsuario.Clave = hashMD5
-    let query = `SELECT * FROM Usuario WHERE Correo = "juan@example.com" AND Clave = 123;`
+    let query = `SELECT * FROM Usuario WHERE Correo = '${nuevoUsuario.Correo}' AND Clave = '${nuevoUsuario.Clave}';`
 
     console.log('====================================');
     console.log("con la consulta: ", query);
