@@ -11,24 +11,39 @@ router.post('/', (req, res) => {
     if (!req.body.Clave) {
         res.json("Por favor escribe tu clave")
     }
-    const nuevoUsuario = {
+    let nuevoUsuario = {
         Correo: req.body.Correo,
         Clave: req.body.Clave
     };
+
+    console.log('====================================');
+    console.log("Antes de la consulta");
+    console.log('====================================');
+
+
     console.log(nuevoUsuario);
     let hash = crypto.createHash('md5');
     hash.update(nuevoUsuario.Clave);
     let hashMD5 = hash.digest('hex');
     nuevoUsuario.Clave = hashMD5
-    const query = `SELECT * FROM usuario WHERE Correo = '${nuevoUsuario.Correo}' AND Clave = '${nuevoUsuario.Clave}';`
+    let query = `SELECT * FROM usuario WHERE Correo = juan@example.com AND Clave = 123;`
+
+    console.log('====================================');
+    console.log("con la consulta: ", query);
+    console.log('====================================');
+
 
     conexion.query(query, async (error, resultado) => {
         try {
+            console.log('====================================');
+            console.log("Dentro de la consulta y el try" );
+            console.log('====================================');
+
             let estadoidusuario = resultado[0]
             let estado = estadoidusuario.Estado_idEstado
             if (resultado.length > 0) {
                 if (estado == 1) {
-                    const tokenSession = await tokenSign(resultado[0]);
+                    let tokenSession = await tokenSign(resultado[0]);
                     console.log("Chido", resultado);
                     res.json(tokenSession)
                 } else {
@@ -62,7 +77,7 @@ router.put('/RecuperarClave', (req, res) => {
     let hashMD5 = hash.digest('hex');
     Clavecomparacion = hashMD5
 
-    const queryVerificacion = `SELECT Usuario.Clave FROM Usuario WHERE Correo='${Correo}' and PalabraClave='${PalabraClave}';`
+    let queryVerificacion = `SELECT Usuario.Clave FROM Usuario WHERE Correo='${Correo}' and PalabraClave='${PalabraClave}';`
     console.log('====================================');
     console.log(queryVerificacion);
     console.log('====================================');
