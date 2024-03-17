@@ -7,13 +7,13 @@ const roleAuth = require('./middleware/roleAuth')
 const cors = require('cors')
 
 
- const listaBlanca = ['https://simpsena.netlify.app/','https://simpsena.netlify.app','http://localhost:4200', 'http://10.0.2.2:3000', 'http://localhost:3000','https://main--simpsena.netlify.app'];
+//  const listaBlanca = ['https://simpsena.netlify.app/','https://simpsena.netlify.app','http://localhost:4200', 'http://10.0.2.2:3000', 'http://localhost:3000','https://main--simpsena.netlify.app'];
 
- app.use(cors({
-      origin: listaBlanca
-  }))
+//  app.use(cors({
+//       origin: listaBlanca
+//   }))
 
-// app.use(cors());
+ app.use(cors());
 
 
 
