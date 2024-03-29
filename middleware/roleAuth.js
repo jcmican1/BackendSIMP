@@ -15,7 +15,7 @@ const roleAuth = (roles) => async (req, res, next) => {
         const token = req.headers.authorization.split(' ').pop()
         const tokenData = await verifyToken(token)
 
-        const userData = `SELECT * FROM Usuario WHERE idUsuario=${tokenData.IdUsuario};`
+        const userData = `SELECT * FROM usuario WHERE idUsuario=${tokenData.IdUsuario};`
         conexion.query(userData, (error, resultado) => {
             if (error) return console.error(error.message)
 

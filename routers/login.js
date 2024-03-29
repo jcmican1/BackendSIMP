@@ -11,48 +11,24 @@ router.post('/', (req, res) => {
     if (!req.body.Clave) {
         res.json("Por favor escribe tu clave")
     }
-    let nuevoUsuario = {
+    const nuevoUsuario = {
         Correo: req.body.Correo,
         Clave: req.body.Clave
     };
-
-    console.log('====================================');
-    console.log("Antes de la consulta");
-    console.log('====================================');
-
-
     console.log(nuevoUsuario);
     let hash = crypto.createHash('md5');
     hash.update(nuevoUsuario.Clave);
     let hashMD5 = hash.digest('hex');
     nuevoUsuario.Clave = hashMD5
-    let query = `SELECT * FROM Usuario WHERE Correo = '${nuevoUsuario.Correo}' AND Clave = '${nuevoUsuario.Clave}';`
-
-    console.log('====================================');
-    console.log("con la consulta: ", query);
-    console.log('====================================');
-
+    const query = `SELECT * FROM usuario WHERE Correo = '${nuevoUsuario.Correo}' AND Clave = '${nuevoUsuario.Clave}';`
 
     conexion.query(query, async (error, resultado) => {
         try {
-            console.log('====================================');
-            console.log("Dentro de la consulta y el try" );
-            console.log('====================================');
-
             let estadoidusuario = resultado[0]
             let estado = estadoidusuario.Estado_idEstado
             if (resultado.length > 0) {
-                console.log('====================================');
-                console.log("Dentro del if de verificacion de resultado y antes de la verificacion de estado", estado );
-                console.log('====================================');
                 if (estado == 1) {
-                    console.log('====================================');
-                    console.log("Dentro del if de verificacion de estado" );
-                    console.log('====================================');
-                    let tokenSession = await tokenSign(resultado[0]);
-                    console.log('====================================');
-                    console.log("despues de la generacion del token: ", tokenSession );
-                    console.log('====================================');
+                    const tokenSession = await tokenSign(resultado[0]);
                     console.log("Chido", resultado);
                     res.json(tokenSession)
                 } else {
@@ -86,7 +62,7 @@ router.put('/RecuperarClave', (req, res) => {
     let hashMD5 = hash.digest('hex');
     Clavecomparacion = hashMD5
 
-    let queryVerificacion = `SELECT Usuario.Clave FROM Usuario WHERE Correo='${Correo}' and PalabraClave='${PalabraClave}';`
+    const queryVerificacion = `SELECT Usuario.Clave FROM Usuario WHERE Correo='${Correo}' and PalabraClave='${PalabraClave}';`
     console.log('====================================');
     console.log(queryVerificacion);
     console.log('====================================');
