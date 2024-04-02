@@ -8,7 +8,8 @@ router.get('/', (req, res) => {
         FROM Movimiento
         INNER JOIN Motivo ON Movimiento.IdMotivo = Motivo.IdMotivo
         INNER JOIN Producto_Materia_Prima ON Movimiento.IdProductoMateriaPrima = Producto_Materia_Prima.IdProductoMateriaPrima
-        INNER JOIN Usuario ON Movimiento.IdUsuario = Usuario.IdUsuario;
+        INNER JOIN Usuario ON Movimiento.IdUsuario = Usuario.IdUsuario
+        ORDER BY FechaMovimientoFormateada DESC;
     `;
 
     conexion.query(query, (error, resultado) => {
