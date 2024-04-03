@@ -8,7 +8,8 @@ router.get('/masvendido', (req, res) => {
     JOIN Producto_Materia_Prima ON Movimiento.IdProductoMateriaPrima = Producto_Materia_Prima.IdProductoMateriaPrima
     WHERE TipoMovimiento = 'Salida'
     GROUP BY NombreProducto
-    ORDER BY TotalVendido DESC;`;
+    ORDER BY TotalVendido DESC
+    LIMIT 3;`;
     conexion.query(query, (error, resultado) => {
         if (error) return console.error(error.message);
 
@@ -26,7 +27,8 @@ router.get('/menosvendido', (req, res) => {
     JOIN Producto_Materia_Prima ON Movimiento.IdProductoMateriaPrima = Producto_Materia_Prima.IdProductoMateriaPrima
     WHERE TipoMovimiento = 'Salida'
     GROUP BY NombreProducto
-    ORDER BY TotalVendido ASC;`;
+    ORDER BY TotalVendido ASC
+    LIMIT 3;`;
     conexion.query(queryr, (error, resultado) => {
         if (error) return console.error(error.message);
 
